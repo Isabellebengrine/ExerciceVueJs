@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <title>Exercices Vuejs</title>
+ <link rel="stylesheet" type="text/css" media="screen" href="bootstrap.css">
+</head>
+<body>
+ 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <a class="navbar-brand" href="#">Vue.js</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="vuejs.html">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#additionneur">Additionneur</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#nbmagique">Nombre magique</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#calculatrice">Calculatrice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#interface">Interface</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="moviedb.html">API MovieDb</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#cours">Exemples</a>
+                </li>
+            </ul>
+            
+        </div>
+    </nav>
+
+ <div class="container">
+
+    <div class="row">
+         <div class="col-sm-12">
+             <h1>Exercices vuejs :</h1>
+            <form action="#" method="GET" class="form">
+                <fieldset>
+                    <legend class="text-info"> Additionneur</legend>
+                    <div class="row" id="additionneur">
+                        <div class="form-group col-sm-2">
+                            <label for="firstNb">Nombre 1 :</label>
+                            <input type="number" class="form-control" id="firstNb" name="firstNb" v-model="firstNb" @keyup="addition">
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <p>+</p>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label for="secondNb">Nombre 2 :</label>
+                            <input type="number" class="form-control" id="secondNb" name="secondNb" v-model="secondNb" @keyup="addition">
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <p>=</p>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label>Résultat :</label>
+                            <p>{{ result }}</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="#" method="GET">
+                <fieldset>
+                    <legend class="text-info"> Nombre magique</legend>
+                    <div class="row" id="nbmagique">
+                        <div class="form-group col-sm-2">
+                            <label for="number">Choisissez un nombre</label>
+                            <input type="number" class="form-control" id="number" v-model="number">
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <input type="button" class="btn btn-info" name="submit" value="Vérifier" @click="verifier">
+                        </div>
+
+                        <div class="col-sm-4">
+                            <p>{{ result }}</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" id="calculatrice">
+        <div class="col-sm-12">
+            
+            <h3 class="text-info">Calculatrice</h3>
+            <div class="row d-flex flex-row">
+                
+                <button class="btn btn-info m-1" v-on:click="append('1')">1</button>
+                <button class="btn btn-info m-1" v-on:click="append('2')">2</button>
+                <button class="btn btn-info m-1" v-on:click="append('3')">3</button>
+                <button class="btn btn-warning m-1" v-on:click="add"> + </button>
+            </div>
+            <div class="row d-flex flex-row">
+
+                <button class="btn btn-info m-1" v-on:click="append('4')">4</button>
+                <button class="btn btn-info m-1" v-on:click="append('5')">5</button>
+                <button class="btn btn-info m-1" v-on:click="append('6')">6</button>
+                <button class="btn btn-warning m-1" v-on:click="substract"> _ </button>
+            </div>
+                
+            <div class="row d-flex flex-row">
+
+                <button class="btn btn-info m-1" v-on:click="append('7')">7</button>
+                <button class="btn btn-info m-1" v-on:click="append('8')">8</button>
+                <button class="btn btn-info m-1" v-on:click="append('9')">9</button>
+                <button class="btn btn-warning m-1" v-on:click="multiply"> X </button>
+            </div>
+                
+            <div class="row d-flex flex-row">
+                
+                <button class="btn btn-info m-1" v-on:click="append('0')">0</button>
+                <button class="btn btn-info m-1" v-on:click="dot"> . </button>
+                <button class="btn btn-danger m-1" v-on:click="clear">C</button>
+                <button class="btn btn-warning m-1" v-on:click="divide">/</button>
+                <button class="btn btn-success m-1" v-on:click="equals"> = </button>
+                
+                <button class="btn btn-secondary m-1"> {{number}}</button>
+                
+            </div>
+                
+        </div>
+    </div>
+
+    <div class="row" id="interface">
+        <div class="col-sm-12">
+            <h3 class="text-info">Interface</h3>
+
+            <div class="border border-info" v-show="panneau1">
+                
+                <p>{{message}}</p>
+                <p class="text-center"><img src="assets/sunrise.jpg"></p>
+                <p class="text-right"><button @click="afficher2" class="btn btn-info">Bonjour !!!</button></p>
+                
+            </div>
+            <div class="border border-info" v-show="panneau2">
+                <p>{{message}}</p>
+                <p class="text-center"><img src="assets/sunset.jpg"></p>
+                <p class="text-right"><button @click="afficher1" class="btn btn-info">Bonsoir !!!</button></p>
+    
+            </div>
+
+            
+
+        </div>
+
+        
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 id="cours" class="text-info mt-4"> Exemples du cours</h2>
+        
+            <div id="app1">
+                <p> {{ message }}</p>
+            </div>
+            
+            <div id="app2">
+                <input type="text" v-model="message">
+                <p>Votre saisie : {{ message }}</p>
+                
+            </div>
+            <p>Autres exemples de directives:</p>
+            <div id="exvshow">
+                <p v-show="affichage"> {{message}}</p>
+                <p>Le paragraphe ci-dessus est affiché/masqué avec v-show et true/false</p>
+            </div>
+            
+            <div id="html">
+                <p>Interprétation du html :(Utilisez l’interpolation HTML uniquement sur du contenu de confiance et jamais sur du contenu fourni par l’utilisateur - vulnérabilités xss)</p>
+                <p>En utilisant les doubles moustaches : {{ rawHtml }}</p>
+                <p>En utilisant la directive `v-html` : <span v-html="rawHtml"></span></p>
+            </div>
+
+            <div id="capture">
+                {{ message }}
+                <button v-on:click="btn1_click">Test</button>
+                <hr>
+                <div id="label1" v-show="label_visible">
+
+                </div>
+            </div>
+
+            <div id="axios">
+                <p><a href="https://fr.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html"> Utiliser Axios pour consommer des API</a></p>
+                <p>Exemple: utiliser l’API CoinDesk pour afficher les prix du Bitcoin qui sont mis à jour toutes les minutes</p>
+                <div id="app">
+                    <h3 class="text-info">Bitcoin Price Index</h3>
+                    <section v-if="errored">
+                        <p>Nous sommes désolés, nous ne sommes pas en mesure de récupérer ces informations pour le moment. Veuillez réessayer ultérieurement.</p>
+                    </section>
+                    
+                    <section v-else>
+                        <div v-if="loading">Chargement...</div>
+                    </section>
+                    <section v-else>
+                        <div v-for="currency in info" class="currency">
+                            {{ currency.description }}:
+                            <span class="lighten">
+                              <span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }}
+                            </span>
+                        </div>
+                    </section>
+
+                    
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!--
+
+Pour charger des éléments externes, vous devez utiliser un module externe Axios (voir balise script plus bas).
+
+Syntaxe:
+
+axios.get(url).then(callback1).catch(callback2);
+url correspond à l'URL du service à déclencher
+callback1 est une fonction qui sera déclenchée à la réception des données, elle reçoit en paramètre une variable contenant la réponse du serveur (voir).
+callback2 est une fonction qui sera déclenchée lorsqu'une erreur se produit
+
+axios.get("liste.php").then(function(response) { console.log(response.data); this.liste = response.data; this.message = "Liste chargée"; });
+
+Dans cet exemple Axios permet de générer une requête AJAX pour recupérer le résultat de liste.php. Lorsque la réponse arrive, la fonction then est déclenchée. Les données reçues sont stockées dans response.data et transférées dans la propriété liste.
+
+Pour "binder" un élément HTML avec le contenu d'une liste, il faut utiliser la syntaxe suivante.
+
+    <div v-for="item in liste">
+      {{ item.sta_nom }}
+    </div>
+Dans cet exemple, l'élément div est répété autant de fois qu'il y a d'items dans liste. Cela permet d'afficher des listes !
+
+    -->
+
+ </div>
+
+<!--pour charger éléments externes, utilisez module externe axios cf. https://github.com/axios/axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+<!--Pour du prototypage ou de l’apprentissage : (Pour la production, nous vous recommandons de vous figer à une version et un build défini pour éviter les changements non compatibles des nouvelles versions)-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="script.js"> </script>
+</body>
+</html>
